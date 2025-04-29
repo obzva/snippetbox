@@ -1,0 +1,31 @@
+{{define "title"}}Signup{{end}}
+
+{{define "main"}}
+<form action='/user/signup' method='POST'>
+    <input type='hidden' name='csrf_token' value={{.CSRFToken}}>
+    <div>
+        <label>Name:</label>
+        {{with .FieldErrors.name}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='name' value='{{.Form.Name}}' required maxlength='255'>
+    </div>
+    <div>
+        <label>Email:</label>
+        {{with .FieldErrors.email}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='email' name='email' value='{{.Form.Email}}' required maxlength='255'>
+    </div>
+    <div>
+        <label>Password:</label>
+        {{with .FieldErrors.password}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='password' name='password' required minlength='8'>
+    </div>
+    <div>
+        <input type='submit' value='Signup'>
+    </div>
+</form>
+{{end}}
